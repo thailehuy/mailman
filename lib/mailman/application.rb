@@ -117,10 +117,11 @@ module Mailman
 
       loop do
         begin
+          Mailman.logger.info('Fetching emails from server.....')
           connection.connect
           connection.get_messages
           connection.disconnect
-        rescue SystemCallError => e
+        rescue Error => e
           Mailman.logger.error e.message
         end
 
