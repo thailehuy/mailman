@@ -121,7 +121,7 @@ module Mailman
           connection.connect
           connection.get_messages
           connection.disconnect
-        rescue Error => e
+        rescue ::Error => e
           Mailman.logger.error e.message
         end
 
