@@ -117,12 +117,14 @@ module Mailman
 
       loop do
         begin
-          Mailman.logger.info('Fetching emails from server.....')
+          Mailman.logger.info('Connecting to email server.....')
           connection.connect
           connection.get_messages
-          connection.disconnect
         rescue Exception => e
           Mailman.logger.error e.message
+        ensure          
+          Mailman.logger.info('Disconnecting from email server.....')
+          connection.disconnect
         end
 
         break unless polling?
