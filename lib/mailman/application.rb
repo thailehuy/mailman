@@ -122,6 +122,7 @@ module Mailman
           connection.get_messages
         rescue Exception => e
           Mailman.logger.error e.message
+          Mailman.logger.error e.backtrace.join("\n")
         ensure          
           Mailman.logger.info('Disconnecting from email server.....')
           connection.disconnect
